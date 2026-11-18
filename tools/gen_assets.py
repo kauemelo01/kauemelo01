@@ -163,6 +163,94 @@ def prime_radiant(t):
     return svg(w, h, "Prime Radiant: harmonized MODIS and VIIRS burning calendar", body, t)
 
 
+# ---------------------------------------------------------------- Solaria (featured, wide)
+SOL_BLUE, SOL_VIOLET, SOL_AMBER = "#5b8cff", "#a78bfa", "#ffb547"
+
+
+def galaxy_points(n, seed=5):
+    """Synthetic spiral galaxy: (x, y, brightness) in unit coords, tilted ellipse."""
+    rnd = random.Random(seed)
+    pts = []
+    for _ in range(n):
+        if rnd.random() < 0.35:  # bulge
+            r = abs(rnd.gauss(0, 0.16))
+            a = rnd.uniform(0, 2 * math.pi)
+        else:  # two arms
+            r = rnd.uniform(0.08, 1.0)
+            a = r * 4.2 + (math.pi if rnd.random() < 0.5 else 0) + rnd.gauss(0, 0.32)
+        x, y = r * math.cos(a), r * math.sin(a) * 0.42
+        ca, sa = math.cos(-0.5), math.sin(-0.5)
+        pts.append((x * ca - y * sa, x * sa + y * ca, max(0.15, 1 - r)))
+    return pts
+
+
+def solaria(t):
+    w, h = 1200, 420
+    rnd = random.Random(21)
+    body = grid(w, h, 30, t)
+    dark = t["bg"] == "#0d1117"
+    sky = "#05070d" if dark else "#0b1020"
+    # Viewer: full image with rulers and a zoom box
+    vx, vy, vw, vh = 40, 56, 470, 300
+    body += text(vx, vy - 22, "Explore · Andromeda (M31)", 15, t["muted"], 600)
+    body += f'<rect x="{vx}" y="{vy}" width="{vw}" height="{vh}" rx="10" fill="{sky}" stroke="{t["border"]}"/>\n'
+    for _ in range(90):
+        body += (f'<circle cx="{vx + rnd.uniform(6, vw - 6):.1f}" cy="{vy + rnd.uniform(6, vh - 6):.1f}" '
+                 f'r="{rnd.uniform(0.4, 1.3):.1f}" fill="#ffffff" fill-opacity="{rnd.uniform(0.25, 0.8):.2f}"/>\n')
+    gcx, gcy, gs = vx + vw / 2, vy + vh / 2, 205
+    for x, y, b in galaxy_points(900):
+        c = lerp_hex(SOL_VIOLET, "#fff4dc", b)
+        body += (f'<circle cx="{gcx + x * gs:.1f}" cy="{gcy + y * gs:.1f}" r="{0.6 + b * 1.4:.1f}" '
+                 f'fill="{c}" fill-opacity="{0.25 + b * 0.6:.2f}"/>\n')
+    for i in range(1, 8):  # pixel ruler ticks
+        x = vx + i * vw / 8
+        body += f'<line x1="{x:.0f}" y1="{vy}" x2="{x:.0f}" y2="{vy + 7}" stroke="#ffffff" stroke-opacity="0.5"/>\n'
+    zx, zy, zw, zh = gcx + 38, gcy - 30, 70, 44
+    body += (f'<rect x="{zx:.0f}" y="{zy:.0f}" width="{zw}" height="{zh}" fill="none" stroke="{SOL_AMBER}" '
+             f'stroke-width="2" rx="3"/>\n')
+    # Zoomed inset: tiles loading in
+    ix, iy, iw, ih = 560, 56, 300, 300
+    body += text(ix, iy - 22, "Deep zoom · 256 px tiles", 15, t["muted"], 600)
+    body += (f'<path d="M{zx + zw:.0f},{zy:.0f} L{ix},{iy} M{zx + zw:.0f},{zy + zh:.0f} L{ix},{iy + ih}" '
+             f'stroke="{SOL_AMBER}" stroke-opacity="0.55" stroke-dasharray="4 4"/>\n')
+    body += f'<rect x="{ix}" y="{iy}" width="{iw}" height="{ih}" rx="10" fill="{sky}" stroke="{t["border"]}"/>\n'
+    for x, y, b in galaxy_points(700, seed=9):
+        px, py = ix + iw * 0.35 + x * 520, iy + ih * 0.6 + y * 520
+        if ix + 4 < px < ix + iw - 4 and iy + 4 < py < iy + ih - 4:
+            c = lerp_hex(SOL_VIOLET, "#fff4dc", b)
+            body += f'<circle cx="{px:.1f}" cy="{py:.1f}" r="{1 + b * 2.2:.1f}" fill="{c}" fill-opacity="{0.3 + b * 0.6:.2f}"/>\n'
+    n = 4
+    ts = iw / n
+    for r in range(n):
+        for c in range(n):
+            # Tiles start covered and fade in one by one; the static (end) state shows the image.
+            delay, fade = 0.4 + 0.15 * (r + c), 0.5
+            k = delay / (delay + fade)
+            body += (f'<rect x="{ix + c * ts:.0f}" y="{iy + r * ts:.0f}" width="{ts:.0f}" height="{ts:.0f}" '
+                     f'fill="{sky}" fill-opacity="0" stroke="{SOL_BLUE}" stroke-opacity="0.35">'
+                     f'<animate attributeName="fill-opacity" values="1;1;0" keyTimes="0;{k:.3f};1" '
+                     f'dur="{delay + fade:.2f}s" fill="freeze"/></rect>\n')
+    body += f'<circle cx="{ix + 196}" cy="{iy + 112}" r="6" fill="{SOL_AMBER}" stroke="{sky}" stroke-width="2"/>\n'
+    body += (f'<rect x="{ix + 208}" y="{iy + 100}" width="80" height="24" rx="6" fill="{t["panel"]}" '
+             f'stroke="{t["border"]}"/>\n')
+    body += text(ix + 248, iy + 117, "Bulge", 12, t["text"], 600, "middle")
+    # Feature panel
+    px, py = 910, 64
+    body += text(px, py - 22, "Ways in", 15, t["muted"], 600)
+    feats = [("Journeys", SOL_AMBER, "guided tours"), ("Compare", SOL_BLUE, "1995 / 2014"),
+             ("Light", SOL_VIOLET, "7 SDO bands"), ("Labels", t["muted"], "validated")]
+    for i, (name, color, note) in enumerate(feats):
+        y = py + 10 + i * 58
+        body += f'<rect x="{px}" y="{y}" width="250" height="46" rx="8" fill="{t["panel"]}" stroke="{t["border"]}"/>\n'
+        body += f'<circle cx="{px + 22}" cy="{y + 23}" r="7" fill="{color}"/>\n'
+        body += text(px + 40, y + 28, name, 15, t["text"], 600)
+        body += text(px + 236, y + 28, note, 13, t["muted"], 400, "end")
+    body += text(px, py + 262, "Hubble · HiRISE · SDO gigapixel images", 13, t["muted"])
+    body += text(px, py + 284, "OpenSeadragon tile pyramids on R2", 13, t["muted"])
+    body += text(px, py + 306, "Shareable view in the URL", 13, t["muted"])
+    return svg(w, h, "Solaria: deep-zoom viewer for very large NASA images", body, t)
+
+
 # ---------------------------------------------------------------- Trade-Viz
 def trade_viz(t):
     w, h = 600, 340
@@ -270,7 +358,7 @@ def main():
     (OUT / "projects").mkdir(parents=True, exist_ok=True)
     for name, t in THEMES.items():
         (OUT / f"banner-{name}.svg").write_text(banner(t), encoding="utf-8")
-        for slug, fn in [("prime-radiant", prime_radiant), ("trade-viz", trade_viz),
+        for slug, fn in [("prime-radiant", prime_radiant), ("solaria", solaria), ("trade-viz", trade_viz),
                          ("political-compass", political_compass), ("cadastro", cadastro)]:
             (OUT / "projects" / f"{slug}-{name}.svg").write_text(fn(t), encoding="utf-8")
     print("assets written to", OUT)

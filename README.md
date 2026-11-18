@@ -18,7 +18,7 @@ I'm a senior data analytics professional with more than ten years turning data i
 - **AI Trainer at micro1.** Designing business scenarios (financial workbooks, cases, executive deliverables) to train and evaluate LLMs.
 - **[Prime Radiant](https://primeradiant.zenus.systems).** The science core of a NASA FIRMS fire-activity app, built with [Guilherme Zeni](https://github.com/Guillhermm).
 
-### Highlight
+### Highlights
 
 <a href="https://primeradiant.zenus.systems">
   <picture>
@@ -37,6 +37,25 @@ Harmonizes MODIS and VIIRS active-fire detections from NASA FIRMS into one burni
 - **Validation:** each piece passed a written science gate before it shipped to the app.
 
 <a href="https://primeradiant.zenus.systems">Open the app</a> · <a href="https://github.com/Guillhermm/prime-radiant">Source</a>
+
+<br>
+
+<a href="https://solaria.zenus.systems">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/projects/solaria-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/projects/solaria-light.svg">
+    <img src="assets/projects/solaria-light.svg" alt="Solaria" width="100%">
+  </picture>
+</a>
+
+**[Solaria](https://solaria.zenus.systems)** · NASA Space Apps Challenge 2025, "Embiggen Your Eyes!" · with [Guilherme Zeni](https://github.com/Guillhermm)
+
+A web app for exploring very large NASA images in the browser: deep zoom over tile pyramids, guided Journeys, before-and-after comparisons and multi-band views of Hubble, HiRISE and SDO imagery. My part, during the challenge:
+
+- **Front-end requirements:** wrote the spec for the viewer: deep-zoom navigation, annotations, layer overlays, temporal comparison and search.
+- **Viewer prototype:** built the first zoomable viewer in React, with a minimap, flag markers on the image and a fullscreen mode.
+
+<a href="https://solaria.zenus.systems">Open the app</a> · <a href="https://github.com/Guillhermm/solaria">Source</a>
 
 ### Projects
 
