@@ -8,6 +8,7 @@
   <a href="https://www.linkedin.com/in/kau%C3%AA-melo-653295128/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
   <a href="mailto:kaue.cmelo@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
   <a href="https://primeradiant.zenus.systems"><img src="https://img.shields.io/badge/Prime_Radiant-live-F68013?style=for-the-badge&logo=nasa&logoColor=white" alt="Prime Radiant"></a>
+  <a href="https://solaria.zenus.systems"><img src="https://img.shields.io/badge/Solaria-live-5B4BDB?style=for-the-badge&logo=nasa&logoColor=white" alt="Solaria"></a>
 </p>
 
 I'm a senior data analytics professional with more than ten years turning data into pricing, revenue and planning decisions, across technology, logistics, energy, digital identity and mobility. I build the whole chain: ingestion, ETL/ELT pipelines, data models, KPI frameworks, forecasting and ML-backed pricing, and the dashboards leadership uses to decide. I hold a B.Eng. in Electrical Engineering from Universidade Anhembi Morumbi and studied Corporate Finance & Investment Banking at FIA. On the side I write Python: dashboards, data tools, and lately science.
@@ -17,6 +18,7 @@ I'm a senior data analytics professional with more than ten years turning data i
 - **LatAm Senior Business Intelligence at Thermo Fisher Scientific.**
 - **AI Trainer at micro1.** Designing business scenarios (financial workbooks, cases, executive deliverables) to train and evaluate LLMs.
 - **[Prime Radiant](https://primeradiant.zenus.systems).** The science core of a NASA FIRMS fire-activity app, built with [Guilherme Zeni](https://github.com/Guillhermm).
+- **[Solaria](https://solaria.zenus.systems).** A web app for exploring very large NASA images in the browser: guided Journeys, deep zoom, comparisons and multi-band views, with [Guilherme Zeni](https://github.com/Guillhermm).
 
 ### Highlights
 
