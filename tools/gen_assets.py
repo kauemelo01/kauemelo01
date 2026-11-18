@@ -251,6 +251,57 @@ def solaria(t):
     return svg(w, h, "Solaria: deep-zoom viewer for very large NASA images", body, t)
 
 
+# ---------------------------------------------------------------- Elasticity & WSB (Power BI)
+def elasticity_wsb(t):
+    import json
+    d = json.loads((Path(__file__).parent / "elasticity_wsb.json").read_text())
+    w, h = 600, 340
+    body = grid(w, h, 30, t)
+    ccol = {1: t["red"], 2: t["orange"], 3: t["muted"], 4: t["blue"], 5: t["green"]}
+    # Left: weekly markup vs. conversion for one True Elastic lane
+    x0, y0, pw, ph = 52, 70, 220, 200
+    pk = d["pick"]
+    lane = pk["lane"].replace("->", "→")
+    body += text(24, 34, "Scatter Plot", 16, t["text"], 700)
+    body += text(24, 54, f'{lane} · dry van · {pk["C"]} weeks', 12, t["muted"])
+    xs = [p[0] for p in pk["pts"]]; ys = [p[1] for p in pk["pts"]]
+    xa, xb = min(xs), max(xs); ya, yb = 0, max(ys) * 1.05
+    sx = lambda v: x0 + (v - xa) / (xb - xa) * pw
+    sy = lambda v: y0 + ph - (v - ya) / (yb - ya) * ph
+    body += f'<rect x="{x0}" y="{y0}" width="{pw}" height="{ph}" fill="{t["panel"]}" stroke="{t["border"]}"/>\n'
+    for x, y in pk["pts"]:
+        body += f'<circle cx="{sx(x):.1f}" cy="{sy(y):.1f}" r="3.2" fill="{t["red"]}" fill-opacity="0.6"/>\n'
+    n = len(xs); mx, my = sum(xs) / n, sum(ys) / n
+    b = sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / sum((x - mx) ** 2 for x in xs)
+    body += f'<clipPath id="ewc"><rect x="{x0}" y="{y0}" width="{pw}" height="{ph}"/></clipPath>\n'
+    body += (f'<line x1="{sx(xa):.1f}" y1="{sy(my + b * (xa - mx)):.1f}" x2="{sx(xb):.1f}" y2="{sy(my + b * (xb - mx)):.1f}" '
+             f'stroke="{t["text"]}" stroke-width="2" stroke-dasharray="5 4" clip-path="url(#ewc)"/>\n')
+    body += text(x0 + pw / 2, y0 + ph + 18, "markup over ECOH %", 11, t["muted"], 400, "middle")
+    body += (f'<text x="{x0 - 10}" y="{y0 + ph / 2}" font-family="{FONT}" font-size="11" fill="{t["muted"]}" '
+             f'text-anchor="middle" transform="rotate(-90 {x0 - 10} {y0 + ph / 2})">conversion %</text>\n')
+    body += f'<rect x="{x0}" y="{y0 + ph + 30}" width="{pw}" height="30" rx="6" fill="{t["panel"]}" stroke="{t["border"]}"/>\n'
+    body += text(x0 + 10, y0 + ph + 50, f'Elasticity {pk["el"]:+.2f}'.replace("-", "−"), 12, t["text"], 600)
+    body += text(x0 + pw - 10, y0 + ph + 50, "True Elastic", 12, t["red"], 700, "end")
+    # Right: clusterization of all KMA lanes
+    cx0, cy0, cw, chh = 330, 70, 246, 200
+    body += text(cx0, 34, "Clusterization", 16, t["text"], 700)
+    body += text(cx0, 54, f'{len(d["dots"])} KMA lanes · Pearson vs. rank', 12, t["muted"])
+    body += f'<rect x="{cx0}" y="{cy0}" width="{cw}" height="{chh}" fill="{t["panel"]}" stroke="{t["border"]}"/>\n'
+    ex, ey = 0.3, 0.75
+    px = lambda v: cx0 + (max(-ex, min(ex, v)) + ex) / (2 * ex) * cw
+    py = lambda v: cy0 + chh - (max(-ey, min(ey, v)) + ey) / (2 * ey) * chh
+    body += f'<line x1="{px(0):.1f}" y1="{cy0}" x2="{px(0):.1f}" y2="{cy0 + chh}" stroke="{t["border"]}"/>\n'
+    body += f'<line x1="{cx0}" y1="{py(0):.1f}" x2="{cx0 + cw}" y2="{py(0):.1f}" stroke="{t["border"]}"/>\n'
+    for el, rho, c, _ in sorted(d["dots"], key=lambda r: -r[3]):
+        body += f'<circle cx="{px(el):.1f}" cy="{py(rho):.1f}" r="2.4" fill="{ccol[int(c)]}" fill-opacity="0.7"/>\n'
+    labels = {1: "True Elastic", 2: "Semi Elastic", 4: "Semi Inelastic", 5: "True Inelastic"}
+    for i, c in enumerate([1, 2, 4, 5]):
+        lx, ly = cx0 + (i % 2) * 128, cy0 + chh + 24 + (i // 2) * 22
+        body += f'<circle cx="{lx + 5}" cy="{ly - 4}" r="5" fill="{ccol[c]}"/>\n'
+        body += text(lx + 16, ly, f'{labels[c]} {d["counts"][str(c)]}', 12, t["text"])
+    return svg(w, h, "Elasticity and WSB: freight price elasticity clusters in Power BI", body, t)
+
+
 # ---------------------------------------------------------------- Trade-Viz
 def trade_viz(t):
     w, h = 600, 340
@@ -385,7 +436,8 @@ def main():
     for name, t in THEMES.items():
         (OUT / f"banner-{name}.svg").write_text(banner(t), encoding="utf-8")
         for slug, fn in [("prime-radiant", prime_radiant), ("solaria", solaria), ("trade-viz", trade_viz),
-                         ("political-compass", political_compass), ("cadastro", cadastro)]:
+                         ("political-compass", political_compass), ("cadastro", cadastro),
+                         ("elasticity-wsb", elasticity_wsb)]:
             (OUT / "projects" / f"{slug}-{name}.svg").write_text(fn(t), encoding="utf-8")
     (OUT / "badges").mkdir(exist_ok=True)
     for slug, args in LIVE_BADGES.items():

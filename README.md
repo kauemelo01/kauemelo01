@@ -63,7 +63,7 @@ A web app for exploring very large NASA images in the browser: deep zoom over ti
 
 <table>
   <tr>
-    <td width="33%" valign="top">
+    <td width="50%" valign="top">
       <a href="https://github.com/kauemelo01/Trade-Viz"><picture>
         <source media="(prefers-color-scheme: dark)" srcset="assets/projects/trade-viz-dark.svg">
         <img src="assets/projects/trade-viz-light.svg" alt="Trade-Viz">
@@ -71,7 +71,7 @@ A web app for exploring very large NASA images in the browser: deep zoom over ti
       <br><b><a href="https://github.com/kauemelo01/Trade-Viz">Trade-Viz</a></b>
       <br>Streamlit dashboard that pulls a trading bot's log over SFTP and shows P&amp;L, win rate and order latency in real time.
     </td>
-    <td width="33%" valign="top">
+    <td width="50%" valign="top">
       <a href="https://github.com/kauemelo01/Political-Compass"><picture>
         <source media="(prefers-color-scheme: dark)" srcset="assets/projects/political-compass-dark.svg">
         <img src="assets/projects/political-compass-light.svg" alt="4D Political Compass">
@@ -79,13 +79,23 @@ A web app for exploring very large NASA images in the browser: deep zoom over ti
       <br><b><a href="https://github.com/kauemelo01/Political-Compass">4D Political Compass</a></b>
       <br>A dataset of ideologies and schools of thought, scored on four independent axes and plotted as a 4D scatterplot.
     </td>
-    <td width="33%" valign="top">
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
       <a href="https://github.com/kauemelo01/Cadastro-PS-PSB"><picture>
         <source media="(prefers-color-scheme: dark)" srcset="assets/projects/cadastro-dark.svg">
         <img src="assets/projects/cadastro-light.svg" alt="Sponsorship app">
       </picture></a>
       <br><b><a href="https://github.com/kauemelo01/Cadastro-PS-PSB">Pastoral Social Sponsorships</a></b>
       <br>Mobile-first Streamlit app that matches sponsors to children at a community charity, backed by a Google Drive spreadsheet.
+    </td>
+    <td width="50%" valign="top">
+      <a href="https://github.com/kauemelo01/elasticity-wsb"><picture>
+        <source media="(prefers-color-scheme: dark)" srcset="assets/projects/elasticity-wsb-dark.svg">
+        <img src="assets/projects/elasticity-wsb-light.svg" alt="Elasticity &amp; WSB">
+      </picture></a>
+      <br><b><a href="https://github.com/kauemelo01/elasticity-wsb">Elasticity &amp; WSB</a></b>
+      <br>Power BI model that scores how price-sensitive each truckload lane of a US freight brokerage is, clusters lanes from True Elastic to True Inelastic, and benchmarks them against SONAR and DAT with a Window / Shadow / Blind framework.
     </td>
   </tr>
 </table>
