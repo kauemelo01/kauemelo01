@@ -302,6 +302,52 @@ def elasticity_wsb(t):
     return svg(w, h, "Elasticity and WSB: freight price elasticity clusters in Power BI", body, t)
 
 
+# ---------------------------------------------------------------- Pricing Power (Power BI)
+def pricing_power(t):
+    import json
+    d = json.loads((Path(__file__).parent / "pricing_power.json").read_text())
+    w, h = 600, 340
+    body = grid(w, h, 30, t)
+    # Left: monthly company-wide Pricing Power vs. the 100% neutral line
+    x0, y0, pw, ph = 52, 74, 250, 196
+    kpi = d["kpi"]; n = len(kpi)
+    lo, hi = 0.0, 1.4
+    sx = lambda i: x0 + i / (n - 1) * pw
+    sy = lambda v: y0 + ph - (v - lo) / (hi - lo) * ph
+    body += text(24, 34, "Pricing Power", 16, t["text"], 700)
+    body += text(24, 54, f'Company-wide · {n} months · 100% = neutral', 12, t["muted"])
+    body += f'<rect x="{x0}" y="{y0}" width="{pw}" height="{ph}" fill="{t["panel"]}" stroke="{t["border"]}"/>\n'
+    for v in (0.5, 1.0):
+        body += text(x0 - 6, sy(v) + 4, f"{v:.0%}", 11, t["muted"], 400, "end")
+    body += (f'<line x1="{x0}" y1="{sy(1):.1f}" x2="{x0 + pw}" y2="{sy(1):.1f}" stroke="{t["text"]}" '
+             f'stroke-width="1.2" stroke-dasharray="5 4"/>\n')
+    pts = [(sx(i), sy(v)) for i, v in enumerate(kpi)]
+    area = f"M{x0},{y0 + ph} L" + " L".join(f"{x:.1f},{y:.1f}" for x, y in pts) + f" L{x0 + pw},{y0 + ph} Z"
+    body += f'<path d="{area}" fill="{t["blue"]}" fill-opacity="0.12"/>\n'
+    body += (f'<path d="M' + " L".join(f"{x:.1f},{y:.1f}" for x, y in pts) + f'" fill="none" stroke="{t["blue"]}" '
+             f'stroke-width="2.5" stroke-linejoin="round"/>\n')
+    for (x, y), v in zip(pts, kpi):
+        body += f'<circle cx="{x:.1f}" cy="{y:.1f}" r="2.6" fill="{t["green"] if v >= 1 else t["blue"]}"/>\n'
+    body += text(x0, y0 + ph + 18, d["months"][0], 11, t["muted"])
+    body += text(x0 + pw, y0 + ph + 18, d["months"][-1], 11, t["muted"], 400, "end")
+    # Right: quadrants, share of loads
+    qx, qy, cs = 346, 74, 117
+    body += text(qx, 34, "Quadrants", 16, t["text"], 700)
+    body += text(qx, 54, f'Share of {d["loads"]:,} loads', 12, t["muted"])
+    sh = d["share"]
+    cells = [(0, 0, "Upgrade", sh["1a"] + sh["1b"], t["green"], f'{sh["1a"]:.0%} winning'),
+             (1, 0, "Strategic Price", sh["2"], t["blue"], "rate ↑ miles ↓"),
+             (0, 1, "Strategic Volume", sh["4"], t["orange"], "rate ↓ miles ↑"),
+             (1, 1, "Downgrade", sh["3"], t["red"], "rate ↓ miles ↓")]
+    for c, r, name, v, col, sub in cells:
+        x, y = qx + c * (cs + 8), qy + r * (cs + 8)
+        body += f'<rect x="{x}" y="{y}" width="{cs}" height="{cs}" rx="10" fill="{col}" fill-opacity="{0.12 + 0.55 * v:.2f}" stroke="{col}"/>\n'
+        body += text(x + 9, y + 22, name, 11.5, t["text"], 600)
+        body += text(x + 10, y + 66, f"{v:.0%}", 28, t["text"], 700)
+        body += text(x + 10, y + 92, sub, 11, t["muted"])
+    return svg(w, h, "Pricing Power: price vs. volume analytics in Power BI", body, t)
+
+
 # ---------------------------------------------------------------- Trade-Viz
 def trade_viz(t):
     w, h = 600, 340
@@ -437,7 +483,7 @@ def main():
         (OUT / f"banner-{name}.svg").write_text(banner(t), encoding="utf-8")
         for slug, fn in [("prime-radiant", prime_radiant), ("solaria", solaria), ("trade-viz", trade_viz),
                          ("political-compass", political_compass), ("cadastro", cadastro),
-                         ("elasticity-wsb", elasticity_wsb)]:
+                         ("elasticity-wsb", elasticity_wsb), ("pricing-power", pricing_power)]:
             (OUT / "projects" / f"{slug}-{name}.svg").write_text(fn(t), encoding="utf-8")
     (OUT / "badges").mkdir(exist_ok=True)
     for slug, args in LIVE_BADGES.items():
