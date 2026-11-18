@@ -64,6 +64,24 @@ A web app for exploring very large NASA images in the browser: deep zoom over ti
 <table>
   <tr>
     <td width="50%" valign="top">
+      <a href="https://github.com/kauemelo01/elasticity-wsb"><picture>
+        <source media="(prefers-color-scheme: dark)" srcset="assets/projects/elasticity-wsb-dark.svg">
+        <img src="assets/projects/elasticity-wsb-light.svg" alt="Elasticity &amp; WSB">
+      </picture></a>
+      <br><b><a href="https://github.com/kauemelo01/elasticity-wsb">Elasticity &amp; WSB</a></b>
+      <br>Power BI model that scores how price-sensitive each truckload lane of a US freight brokerage is, clusters lanes from True Elastic to True Inelastic, and benchmarks them against SONAR and DAT with a Window / Shadow / Blind framework.
+    </td>
+    <td width="50%" valign="top">
+      <a href="https://github.com/kauemelo01/Pricing-Power"><picture>
+        <source media="(prefers-color-scheme: dark)" srcset="assets/projects/pricing-power-dark.svg">
+        <img src="assets/projects/pricing-power-light.svg" alt="Pricing Power">
+      </picture></a>
+      <br><b><a href="https://github.com/kauemelo01/Pricing-Power">Pricing Power</a></b>
+      <br>Power BI model that splits each month's freight bookings growth into a price effect and a volume effect, places every lane in one of four quadrants, and rolls them up into one load-weighted Pricing Power score.
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
       <a href="https://github.com/kauemelo01/Trade-Viz"><picture>
         <source media="(prefers-color-scheme: dark)" srcset="assets/projects/trade-viz-dark.svg">
         <img src="assets/projects/trade-viz-light.svg" alt="Trade-Viz">
@@ -88,24 +106,6 @@ A web app for exploring very large NASA images in the browser: deep zoom over ti
       </picture></a>
       <br><b><a href="https://github.com/kauemelo01/Cadastro-PS-PSB">Pastoral Social Sponsorships</a></b>
       <br>Mobile-first Streamlit app that matches sponsors to children at a community charity, backed by a Google Drive spreadsheet.
-    </td>
-    <td width="50%" valign="top">
-      <a href="https://github.com/kauemelo01/elasticity-wsb"><picture>
-        <source media="(prefers-color-scheme: dark)" srcset="assets/projects/elasticity-wsb-dark.svg">
-        <img src="assets/projects/elasticity-wsb-light.svg" alt="Elasticity &amp; WSB">
-      </picture></a>
-      <br><b><a href="https://github.com/kauemelo01/elasticity-wsb">Elasticity &amp; WSB</a></b>
-      <br>Power BI model that scores how price-sensitive each truckload lane of a US freight brokerage is, clusters lanes from True Elastic to True Inelastic, and benchmarks them against SONAR and DAT with a Window / Shadow / Blind framework.
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" valign="top">
-      <a href="https://github.com/kauemelo01/Pricing-Power"><picture>
-        <source media="(prefers-color-scheme: dark)" srcset="assets/projects/pricing-power-dark.svg">
-        <img src="assets/projects/pricing-power-light.svg" alt="Pricing Power">
-      </picture></a>
-      <br><b><a href="https://github.com/kauemelo01/Pricing-Power">Pricing Power</a></b>
-      <br>Power BI model that splits each month's freight bookings growth into a price effect and a volume effect, places every lane in one of four quadrants, and rolls them up into one load-weighted Pricing Power score.
     </td>
     <td width="50%" valign="top"></td>
   </tr>
