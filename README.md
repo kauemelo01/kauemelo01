@@ -146,4 +146,5 @@ Certified Pricing Professional (CPP) · Portuguese (native) · English (C1, Camb
   <img src="https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge" alt="Power BI">
   <img src="https://img.shields.io/badge/Tableau-E97627?style=for-the-badge" alt="Tableau">
   <img src="https://img.shields.io/badge/Claude_Code-D97757?style=for-the-badge&logo=claude&logoColor=white" alt="Claude Code">
+  <img src="https://img.shields.io/badge/Codex-000000?style=for-the-badge&logo=openai&logoColor=white" alt="Codex">
 </p>
