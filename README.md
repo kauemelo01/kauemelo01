@@ -102,12 +102,19 @@ A web app for exploring very large NASA images in the browser: deep zoom over ti
     <td width="50%" valign="top">
       <a href="https://github.com/kauemelo01/Cadastro-PS-PSB"><picture>
         <source media="(prefers-color-scheme: dark)" srcset="assets/projects/cadastro-dark.svg">
-        <img src="assets/projects/cadastro-light.svg" alt="Sponsorship app">
+        <img src="assets/projects/cadastro-light.svg" alt="Pastoral Social registry app">
       </picture></a>
-      <br><b><a href="https://github.com/kauemelo01/Cadastro-PS-PSB">Pastoral Social Sponsorships</a></b>
+      <br><b><a href="https://github.com/kauemelo01/Cadastro-PS-PSB">Pastoral Social Registry</a></b>
+      <br>Mobile-first Streamlit app for a community charity's front desk: accent- and CPF-tolerant search, monthly food-basket delivery tracking and an admin mode, with safe concurrent writes to a spreadsheet on Google Drive.
+    </td>
+    <td width="50%" valign="top">
+      <a href="https://github.com/kauemelo01/Padrinhos-PS-PSB"><picture>
+        <source media="(prefers-color-scheme: dark)" srcset="assets/projects/padrinhos-dark.svg">
+        <img src="assets/projects/padrinhos-light.svg" alt="Sponsorship app">
+      </picture></a>
+      <br><b><a href="https://github.com/kauemelo01/Padrinhos-PS-PSB">Pastoral Social Sponsorships</a></b>
       <br>Mobile-first Streamlit app that matches sponsors to children at a community charity, backed by a Google Drive spreadsheet.
     </td>
-    <td width="50%" valign="top"></td>
   </tr>
 </table>
 

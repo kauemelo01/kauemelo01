@@ -414,8 +414,8 @@ def political_compass(t):
     return svg(w, h, "4D Political Compass scatterplot preview", body, t)
 
 
-# ---------------------------------------------------------------- Cadastro (sponsorship app)
-def cadastro(t):
+# ---------------------------------------------------------------- Padrinhos (sponsorship app)
+def padrinhos(t):
     w, h = 600, 340
     body = grid(w, h, 30, t)
     # phone frame
@@ -477,12 +477,59 @@ def live_badge(label, seg, tlen):
             f'</svg>\n')
 
 
+# ---------------------------------------------------------------- Cadastro (registry lookup app)
+def cadastro(t):
+    w, h = 600, 340
+    body = grid(w, h, 30, t)
+    hl = "#fff3a3" if t["bg"] == "#ffffff" else "#6b5d12"
+    fx, fy, fw, fh = 200, 18, 200, 304
+    body += f'<rect x="{fx}" y="{fy}" width="{fw}" height="{fh}" rx="22" fill="{t["panel"]}" stroke="{t["border"]}" stroke-width="2"/>\n'
+    body += f'<rect x="{fx + 76}" y="{fy + 10}" width="48" height="6" rx="3" fill="{t["border"]}"/>\n'
+    for i, (ph, val) in enumerate([("Nº do registro", ""), ("Nome, CPF, reservas", "silva")]):
+        y = fy + 26 + i * 30
+        body += f'<rect x="{fx + 14}" y="{y}" width="{fw - 28}" height="24" rx="6" fill="{t["bg"]}" stroke="{t["border"]}"/>\n'
+        body += text(fx + 24, y + 16, val or ph, 11, t["text"] if val else t["muted"])
+    # record card
+    cy = fy + 90
+    body += f'<rect x="{fx + 14}" y="{cy}" width="{fw - 28}" height="200" rx="8" fill="{t["bg"]}" stroke="{t["border"]}"/>\n'
+    body += f'<rect x="{fx + 52}" y="{cy + 8}" width="34" height="16" rx="3" fill="{hl}"/>\n'
+    body += text(fx + 24, cy + 21, "Ana Silva Rocha", 12, t["text"], 700)
+    body += text(fx + 24, cy + 38, "Nº 0142 · CPF ***.***.148-**", 10, t["muted"])
+    body += text(fx + 24, cy + 56, "Status: Ativo · Tipo: Cesta", 10, t["text"])
+    body += text(fx + 24, cy + 72, "Alerta: trazer RG", 11, t["red"], 700)
+    months = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"]
+    for i, m in enumerate(months):
+        x = fx + 24 + i * 26
+        done = i < 4
+        body += (f'<rect x="{x}" y="{cy + 84}" width="22" height="22" rx="4" fill="{t["green"] if done else t["empty"]}" '
+                 f'fill-opacity="{0.85 if done else 1}"/>\n')
+        body += text(x + 11, cy + 118, m, 8, t["muted"], 400, "middle")
+    for i, (emo, nm) in enumerate([("#d63384", "Bia, 6"), (t["blue"], "Davi, 2")]):
+        x = fx + 24 + i * 76
+        body += f'<rect x="{x}" y="{cy + 128}" width="70" height="20" rx="10" fill="{emo}" fill-opacity="0.15" stroke="{emo}"/>\n'
+        body += text(x + 35, cy + 142, nm, 10, emo, 600, "middle")
+    body += f'<rect x="{fx + 24}" y="{cy + 160}" width="{fw - 48}" height="28" rx="7" fill="{t["green"]}"/>\n'
+    body += text(fx + fw / 2, cy + 178, "Marcar entrega · Mai/26", 11, "#ffffff", 700, "middle")
+    # side notes
+    body += text(30, 100, "Busca", 16, t["text"], 700)
+    body += text(30, 122, "sem acento, CPF", 12, t["muted"])
+    body += text(30, 140, "com ou sem pontuação", 12, t["muted"])
+    body += text(30, 210, "Cestas extras", 16, t["text"], 700)
+    body += text(30, 232, "modo administrador", 12, t["muted"])
+    body += text(430, 100, "Google Drive", 16, t["text"], 700)
+    body += text(430, 122, "cadastro.xlsx", 12, t["muted"])
+    body += text(430, 210, "Gravação segura", 16, t["text"], 700)
+    body += text(430, 232, "lock + checagem", 12, t["muted"])
+    body += text(430, 250, "de concorrência", 12, t["muted"])
+    return svg(w, h, "Pastoral Social registry lookup app preview", body, t)
+
+
 def main():
     (OUT / "projects").mkdir(parents=True, exist_ok=True)
     for name, t in THEMES.items():
         (OUT / f"banner-{name}.svg").write_text(banner(t), encoding="utf-8")
         for slug, fn in [("prime-radiant", prime_radiant), ("solaria", solaria), ("trade-viz", trade_viz),
-                         ("political-compass", political_compass), ("cadastro", cadastro),
+                         ("political-compass", political_compass), ("cadastro", cadastro), ("padrinhos", padrinhos),
                          ("elasticity-wsb", elasticity_wsb), ("pricing-power", pricing_power)]:
             (OUT / "projects" / f"{slug}-{name}.svg").write_text(fn(t), encoding="utf-8")
     (OUT / "badges").mkdir(exist_ok=True)
