@@ -139,11 +139,10 @@ Certified Pricing Professional (CPP) · Portuguese (native) · English (C1, Camb
 </p>
 <p>
   <img src="https://img.shields.io/badge/Databricks-FF3621?style=for-the-badge&logo=databricks&logoColor=white" alt="Databricks">
-  <img src="https://img.shields.io/badge/dbt-FF694B?style=for-the-badge" alt="dbt">
-  <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge" alt="AWS">
-  <img src="https://img.shields.io/badge/GCP-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" alt="GCP">
   <img src="https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge" alt="Power BI">
   <img src="https://img.shields.io/badge/Tableau-E97627?style=for-the-badge" alt="Tableau">
+  <img src="https://img.shields.io/badge/dbt-FF694B?style=for-the-badge" alt="dbt">
+  <img src="https://img.shields.io/badge/GCP-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" alt="GCP">
   <img src="https://img.shields.io/badge/Claude_Code-D97757?style=for-the-badge&logo=claude&logoColor=white" alt="Claude Code">
   <img src="https://img.shields.io/badge/Codex-000000?style=for-the-badge&logo=openai&logoColor=white" alt="Codex">
 </p>
