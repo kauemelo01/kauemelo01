@@ -251,6 +251,88 @@ def solaria(t):
     return svg(w, h, "Solaria: deep-zoom viewer for very large NASA images", body, t)
 
 
+# ---------------------------------------------------------------- Solar System Explorer (highlight, wide)
+SSE_SUN, SSE_EARTH, SSE_VENUS, SSE_MARS, SSE_MERCURY = "#fbba1f", "#4c8dff", "#e8c37a", "#f0643c", "#a8a29e"
+# (semi-major axis in AU, period in years, phase at t=0) — circular approximation of JPL mean elements
+SSE_PLANETS = {"Mercury": (0.387, 0.2408, 1.2), "Venus": (0.723, 0.6152, 0.4),
+               "Earth": (1.0, 1.0, 0.0), "Mars": (1.524, 1.8809, 2.1)}
+
+
+def sse_pos(name, yr):
+    a, T, ph = SSE_PLANETS[name]
+    ang = ph + 2 * math.pi * yr / T
+    return a * math.cos(ang), a * math.sin(ang)
+
+
+def sse_path(name, years, cx, cy, scale, frame=None, steps=900):
+    pts = []
+    for i in range(steps + 1):
+        yr = years * i / steps
+        x, y = sse_pos(name, yr)
+        if frame:
+            fx, fy = sse_pos(frame, yr)
+            x, y = x - fx, y - fy
+        pts.append((cx + x * scale, cy - y * scale))
+    return "M" + " L".join(f"{x:.1f},{y:.1f}" for x, y in pts)
+
+
+def solar_system_explorer(t):
+    w, h = 1200, 420
+    rnd = random.Random(17)
+    body = grid(w, h, 30, t)
+    # Panel 1: hold the Sun still (heliocentric)
+    ax, ay, aw, ah = 40, 56, 330, 300
+    cx, cy, sc = ax + aw / 2, ay + ah / 2, 47
+    body += text(ax, ay - 22, "Hold the Sun still", 15, t["muted"], 600)
+    body += f'<rect x="{ax}" y="{ay}" width="{aw}" height="{ah}" rx="10" fill="{t["panel"]}" stroke="{t["border"]}"/>\n'
+    for _ in range(160):  # main belt, statistical
+        r, a = rnd.uniform(2.15, 2.75), rnd.uniform(0, 2 * math.pi)
+        body += (f'<circle cx="{cx + r * sc * math.cos(a):.1f}" cy="{cy + r * sc * math.sin(a):.1f}" r="0.9" '
+                 f'fill="{t["muted"]}" fill-opacity="0.55"/>\n')
+    colors = {"Mercury": SSE_MERCURY, "Venus": SSE_VENUS, "Earth": SSE_EARTH, "Mars": SSE_MARS}
+    for name, (a, T, ph) in SSE_PLANETS.items():
+        body += f'<circle cx="{cx}" cy="{cy}" r="{a * sc:.1f}" fill="none" stroke="{colors[name]}" stroke-opacity="0.55" stroke-width="1.5"/>\n'
+        x, y = sse_pos(name, 0.35)
+        body += f'<circle cx="{cx + x * sc:.1f}" cy="{cy - y * sc:.1f}" r="{5 if name != "Mercury" else 3.5}" fill="{colors[name]}"/>\n'
+    body += f'<circle cx="{cx}" cy="{cy}" r="10" fill="{SSE_SUN}"/>\n'
+    body += f'<circle cx="{cx}" cy="{cy}" r="16" fill="{SSE_SUN}" fill-opacity="0.18"/>\n'
+    # Panel 2: hold the Earth still (geocentric) — Venus rose and Mars retrograde loops
+    bx, by, bw, bh = 410, 56, 430, 300
+    ex, ey, sc2 = bx + bw / 2, by + bh / 2 - 12, 47
+    body += text(bx, by - 22, "Hold the Earth still", 15, t["muted"], 600)
+    body += f'<rect x="{bx}" y="{by}" width="{bw}" height="{bh}" rx="10" fill="{t["panel"]}" stroke="{t["border"]}"/>\n'
+    body += f'<clipPath id="ssec"><rect x="{bx}" y="{by}" width="{bw}" height="{bh}" rx="10"/></clipPath>\n<g clip-path="url(#ssec)">\n'
+    body += (f'<circle cx="{ex}" cy="{ey}" r="{sc2}" fill="none" stroke="{SSE_SUN}" stroke-width="1.5" '
+             f'stroke-dasharray="3 5" stroke-opacity="0.8"/>\n')
+    for name, years, color, width, op in [("Mars", 2.6, SSE_MARS, 1.8, 0.9), ("Venus", 8.0, SSE_VENUS, 1.8, 0.95)]:
+        d = sse_path(name, years, ex, ey, sc2, frame="Earth", steps=1400)
+        body += (f'<path d="{d}" fill="none" stroke="{color}" stroke-width="{width}" stroke-opacity="{op}" '
+                 f'stroke-linejoin="round" pathLength="1000" stroke-dasharray="1000" stroke-dashoffset="0">'
+                 f'<animate attributeName="stroke-dashoffset" from="1000" to="0" dur="3.2s" fill="freeze"/></path>\n')
+    body += "</g>\n"
+    body += f'<circle cx="{ex}" cy="{ey}" r="7" fill="{SSE_EARTH}" stroke="{t["panel"]}" stroke-width="2"/>\n'
+    for i, (name, color) in enumerate([("Sun", SSE_SUN), ("Venus", SSE_VENUS), ("Mars", SSE_MARS)]):
+        lx = bx + 14 + i * 74
+        body += f'<circle cx="{lx + 5}" cy="{by + bh - 17}" r="5" fill="{color}"/>\n'
+        body += text(lx + 15, by + bh - 12, name, 12, t["text"])
+    body += text(bx + bw - 14, by + bh - 12, "Venus: 8-year rose", 12, t["muted"], 400, "end")
+    # Feature panel
+    px, py = 890, 64
+    body += text(px, py - 22, "Any body as the centre", 15, t["muted"], 600)
+    feats = [("494 objects", SSE_SUN, "real orbits"), ("459 moons", SSE_VENUS, "292 at Saturn"),
+             ("Any date", SSE_EARTH, "forward or back"), ("JPL / NASA", SSE_MARS, "cited per object")]
+    for i, (name, color, note) in enumerate(feats):
+        y = py + 10 + i * 58
+        body += f'<rect x="{px}" y="{y}" width="270" height="46" rx="8" fill="{t["panel"]}" stroke="{t["border"]}"/>\n'
+        body += f'<circle cx="{px + 22}" cy="{y + 23}" r="7" fill="{color}"/>\n'
+        body += text(px + 40, y + 28, name, 15, t["text"], 600)
+        body += text(px + 256, y + 28, note, 12, t["muted"], 400, "end")
+    body += text(px, py + 262, "3D orrery in one index.html (three.js)", 13, t["muted"])
+    body += text(px, py + 284, "Orbit trails redrawn in the chosen frame", 13, t["muted"])
+    body += text(px, py + 306, "True scale or magnified bodies", 13, t["muted"])
+    return svg(w, h, "Solar System Explorer: an orrery where any body can be the centre", body, t)
+
+
 # ---------------------------------------------------------------- Elasticity & WSB (Power BI)
 def elasticity_wsb(t):
     import json
@@ -528,7 +610,7 @@ def main():
     (OUT / "projects").mkdir(parents=True, exist_ok=True)
     for name, t in THEMES.items():
         (OUT / f"banner-{name}.svg").write_text(banner(t), encoding="utf-8")
-        for slug, fn in [("prime-radiant", prime_radiant), ("solaria", solaria), ("trade-viz", trade_viz),
+        for slug, fn in [("prime-radiant", prime_radiant), ("solaria", solaria), ("solar-system-explorer", solar_system_explorer), ("trade-viz", trade_viz),
                          ("political-compass", political_compass), ("cadastro", cadastro), ("padrinhos", padrinhos),
                          ("elasticity-wsb", elasticity_wsb), ("pricing-power", pricing_power)]:
             (OUT / "projects" / f"{slug}-{name}.svg").write_text(fn(t), encoding="utf-8")

@@ -59,6 +59,26 @@ A web app for exploring very large NASA images in the browser: deep zoom over ti
 
 <a href="https://solaria.zenus.systems">Open the app</a> · <a href="https://github.com/Guillhermm/solaria">Source</a>
 
+<br>
+
+<a href="https://kauemelo01.github.io/Solar-System-Explorer/">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/projects/solar-system-explorer-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/projects/solar-system-explorer-light.svg">
+    <img src="assets/projects/solar-system-explorer-light.svg" alt="Solar System Explorer" width="100%">
+  </picture>
+</a>
+
+**[Solar System Explorer](https://kauemelo01.github.io/Solar-System-Explorer/)** · an interactive 3D orrery where any body can be the centre
+
+The Sun-centred picture of the solar system is a choice of reference frame, not the only correct one. Pick any object (the Sun, the Earth, the Moon, Io, a comet) and hold it still: everything else moves relative to it, and the orbit trails redraw in that frame. Hold the Earth still and Mars' retrograde loops appear; hold Jupiter still and the Sun traces a 12-year circle.
+
+- **494 real objects:** the Sun, 8 planets, 459 natural satellites, dwarf planets, asteroids, centaurs and comets, each with orbital elements from NASA/JPL.
+- **Any date:** positions computed from JPL Keplerian and mean orbital elements, forward or backward in time, at true scale or with magnified bodies.
+- **Cited data:** every object links to its JPL Horizons/SBDB and NASA references; the whole app is a single `index.html` with three.js.
+
+<a href="https://kauemelo01.github.io/Solar-System-Explorer/">Open the app</a> · <a href="https://github.com/kauemelo01/Solar-System-Explorer">Source</a>
+
 ### Projects
 
 <table>
