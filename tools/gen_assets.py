@@ -319,7 +319,7 @@ def solar_system_explorer(t):
     # Feature panel
     px, py = 890, 64
     body += text(px, py - 22, "Any body as the centre", 15, t["muted"], 600)
-    feats = [("494 objects", SSE_SUN, "real orbits"), ("459 moons", SSE_VENUS, "292 at Saturn"),
+    feats = [("516 objects", SSE_SUN, "real orbits"), ("467 moons", SSE_VENUS, "292 at Saturn"),
              ("Any date", SSE_EARTH, "forward or back"), ("JPL / NASA", SSE_MARS, "cited per object")]
     for i, (name, color, note) in enumerate(feats):
         y = py + 10 + i * 58
@@ -327,9 +327,9 @@ def solar_system_explorer(t):
         body += f'<circle cx="{px + 22}" cy="{y + 23}" r="7" fill="{color}"/>\n'
         body += text(px + 40, y + 28, name, 15, t["text"], 600)
         body += text(px + 256, y + 28, note, 12, t["muted"], 400, "end")
-    body += text(px, py + 262, "3D orrery in one index.html (three.js)", 13, t["muted"])
+    body += text(px, py + 262, "3D orrery with spacecraft maps (three.js)", 13, t["muted"])
     body += text(px, py + 284, "Orbit trails redrawn in the chosen frame", 13, t["muted"])
-    body += text(px, py + 306, "True scale or magnified bodies", 13, t["muted"])
+    body += text(px, py + 306, "Always true to scale", 13, t["muted"])
     return svg(w, h, "Solar System Explorer: an orrery where any body can be the centre", body, t)
 
 
@@ -534,22 +534,24 @@ def padrinhos(t):
 
 # ---------------------------------------------------------------- "live" badges (shields "for-the-badge" look + pulsing red dot)
 NASA_LOGO = "data:image/svg+xml;base64,PHN2ZyBmaWxsPSJ3aGl0ZSIgcm9sZT0iaW1nIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPk5BU0E8L3RpdGxlPjxwYXRoIGQ9Ik00LjM0NCAxMy41OThjLjA3NS4yODEuMTk1LjM5LjQwNy4zOS4yMiAwIC4zMzUtLjEzMi4zMzUtLjM5VjguODA0aDEuMzc5djQuNzk0YzAgLjY3NS0uMDg4Ljk2OC0uNDMgMS4zMS0uMjQ3LjI0OC0uNzAzLjQzOS0xLjI3OC40MzktLjQ2NCAwLS45MDktLjE1NC0xLjE5Mi0uNDM4LS4yNDktLjI1LS4zODYtLjUwNS0uNTk5LTEuMzExbC0uODQ2LTMuMTk2Yy0uMDc0LS4yODEtLjE5NC0uMzktLjQwNi0uMzktLjIyIDAtLjMzNi4xMzItLjMzNi4zOXY0Ljc5NEgwdi00Ljc5NGMwLS42NzUuMDg4LS45NjguNDMtMS4zMS4yNDctLjI0OC43MDMtLjQzOSAxLjI3OC0uNDM5LjQ2NCAwIC45MDkuMTU0IDEuMTkyLjQzOC4yNDkuMjUuMzg1LjUwNS41OTkgMS4zMTF6TTIyLjU3NSAxNS4xOTZsLTEuNTkxLTQuOThhLjQxNS40MTUgMCAwMC0uMDYtLjEzMi4yMjYuMjI2IDAgMDAtLjE4Ni0uMDgyLjIyNi4yMjYgMCAwMC0uMTg1LjA4Mi40MTQuNDE0IDAgMDAtLjA2LjEzMmwtMS41OTEgNC45OGgtMS40MjVsMS43MzktNS40NGMuMDktLjI4My4yMi0uNTI0LjM4NC0uNjg0LjI4Mi0uMjc1LjYxNC0uNDE5IDEuMTM4LS40MTkuNTI1IDAgLjg1Ny4xNDQgMS4xMzkuNDIuMTY0LjE2LjI5NC40LjM4NC42ODNMMjQgMTUuMTk2aC0xLjQyNXpNMTUuNTMxIDE1LjE5NmMuOTAzIDAgMS4zNDQtLjE5MiAxLjY5Mi0uNTM4LjM4NS0uMzgzLjU2OS0uODAyLjU2OS0xLjQyNyAwLS41NTMtLjIwMi0xLjA2NC0uNTEtMS4zNy0uNDAzLS40LS45MDMtLjUyNy0xLjcxOS0uNTI3aC0xLjE0MmMtLjQzNiAwLS42MS0uMDUzLS43NDgtLjE4OC0uMDk0LS4wOTMtLjEzOS0uMjMtLjEzOS0uMzkzIDAtLjE2OC4wNC0uMzM0LjE1Ni0uNDQ4LjEwMy0uMS4yNDMtLjE0Ny41MTEtLjE0N2gzLjMwMVY4LjgwNGgtMy4wNDljLS45MDMgMC0xLjM0My4xOTItMS42OTEuNTM4LS4zODUuMzgzLS41Ny44MDItLjU3IDEuNDI3IDAgLjU1My4yMDMgMS4wNjQuNTEgMS4zNy40MDQuNC45MDQuNTI3IDEuNzIuNTI3aDEuMTQxYy40MzcgMCAuNjEuMDUzLjc0OC4xODguMDk1LjA5My4xNC4yMy4xNC4zOTMgMCAuMTY5LS4wNDEuMzM1LS4xNTcuNDQ4LS4xMDIuMS0uMjQyLjE0Ny0uNTEuMTQ3aC0zLjQwNWwtMS4zMDYtNC4wODZjLS4wOS0uMjgzLS4yMi0uNTI0LS4zODQtLjY4NC0uMjgyLS4yNzUtLjYxNS0uNDE5LTEuMTM5LS40MTlzLS44NTcuMTQ0LTEuMTM4LjQyYy0uMTY1LjE2LS4yOTQuNC0uMzg1LjY4M2wtMS43MzggNS40NGgxLjQyNGwxLjU5Mi00Ljk4YS40MTUuNDE1IDAgMDEuMDYtLjEzMi4yMjYuMjI2IDAgMDEuMTg1LS4wODJjLjA4MiAwIC4xNDIuMDI4LjE4Ni4wODJhLjQxMy40MTMgMCAwMS4wNi4xMzJsMS41OTEgNC45OGg0LjE0NHoiLz48L3N2Zz4="
-LIVE_BADGES = {  # slug: (label, label segment width, label text length) — geometry from shields.io
+LIVE_BADGES = {  # slug: (label, label segment width, label text length[, logo, fill]) — geometry from shields.io
     "prime-radiant": ("PRIME RADIANT", 138.25, 97.25),
     "solaria": ("SOLARIA", 94.75, 53.75),
-    "solar-system-explorer": ("SOLAR SYSTEM EXPLORER", 196.25, 155.25),
+    # no NASA logo (label starts 12px in, so segment = text + 18.5) and its own colour
+    "solar-system-explorer": ("SOLAR SYSTEM EXPLORER", 173.75, 155.25, None, "#1e3a8a"),
 }
 
 
-def live_badge(label, seg, tlen):
+def live_badge(label, seg, tlen, logo=NASA_LOGO, fill="#555"):
     w = seg + 22
     cx = seg + 6
+    icon = f'<image x="9" y="7" width="14" height="14" href="{logo}"/>' if logo else ""
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="28" role="img" aria-label="{label}: live">'
             f'<title>{label}: live</title>'
             f'<defs><filter id="g" x="-2" y="-2" width="5" height="5"><feGaussianBlur stdDeviation="1.6"/></filter></defs>'
-            f'<rect width="{w}" height="28" fill="#555" shape-rendering="crispEdges"/>'
-            f'<image x="9" y="7" width="14" height="14" href="{NASA_LOGO}"/>'
-            f'<text x="{(seg + 23) / 2 + 2.5:.2f}" y="17.5" fill="#fff" text-anchor="middle" font-size="10" '
+            f'<rect width="{w}" height="28" fill="{fill}" shape-rendering="crispEdges"/>'
+            f'{icon}'
+            f'<text x="{seg - 6.5 - tlen / 2:.2f}" y="17.5" fill="#fff" text-anchor="middle" font-size="10" '
             f'font-family="Verdana,Geneva,DejaVu Sans,sans-serif" textLength="{tlen}" text-rendering="geometricPrecision">{label}</text>'
             f'<circle cx="{cx}" cy="14" r="4" fill="#ff3b30" opacity="0.6">'
             f'<animate attributeName="r" values="4;9;4" dur="1.6s" repeatCount="indefinite"/>'
