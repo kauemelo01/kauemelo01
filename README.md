@@ -89,7 +89,7 @@ The Sun-centred picture of the solar system is a choice of reference frame, not 
         <img src="assets/projects/elasticity-wsb-light.svg" alt="Elasticity &amp; WSB">
       </picture></a>
       <br><b><a href="https://github.com/kauemelo01/elasticity-wsb">Elasticity &amp; WSB</a></b>
-      <br>Power BI model that scores how price-sensitive each truckload lane of a US freight brokerage is, clusters lanes from True Elastic to True Inelastic, and benchmarks them against SONAR and DAT with a Window / Shadow / Blind framework.
+      <br>Power BI model that scores how price-sensitive each truckload lane of a US freight brokerage is, clusters lanes from True Elastic to True Inelastic, and benchmarks them against two well-renowned market intelligence sources with a Window / Shadow / Blind framework.
     </td>
     <td width="50%" valign="top">
       <a href="https://github.com/kauemelo01/Pricing-Power"><picture>
