@@ -74,7 +74,6 @@ A web app for exploring very large NASA images in the browser: deep zoom over ti
 The Sun-centred picture of the solar system is a choice of reference frame, not the only correct one. Pick any object (the Sun, the Earth, the Moon, Io, a comet) and hold it still: everything else moves relative to it, and the orbit trails redraw in that frame. Hold the Earth still and Mars' retrograde loops appear; hold Jupiter still and the Sun traces a 12-year circle.
 
 - **516 real objects:** the Sun, 8 planets, 467 natural satellites, dwarf planets, asteroids, centaurs, comets and 7 ring systems, each with orbital elements from NASA/JPL.
-- **Any date:** positions computed from JPL orbital elements, forward or backward in time between 1000 and 3000 AD, always at true scale.
 - **Real surfaces:** spacecraft maps of the Sun, the planets, the Moon, Ceres, Vesta and 18 major moons; each object's card says whether its surface is real photos, a partial map or a painted illustration.
 - **Cited data:** every object links to its JPL Horizons/SBDB and NASA references, with documented known issues and limitations; built with three.js and no build step.
 
