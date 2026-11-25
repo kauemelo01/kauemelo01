@@ -5,11 +5,11 @@
 </picture>
 
 <p align="center">
-  <a href="https://www.linkedin.com/in/kau%C3%AA-melo-653295128/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
   <a href="mailto:kaue.cmelo@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
+  <a href="https://www.linkedin.com/in/kau%C3%AA-melo-653295128/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
+  <a href="https://kauemelo01.github.io/Solar-System-Explorer/"><img src="assets/badges/solar-system-explorer-live.svg" alt="Solar System Explorer (live)"></a>
   <a href="https://primeradiant.zenus.systems"><img src="assets/badges/prime-radiant-live.svg" alt="Prime Radiant (live)"></a>
   <a href="https://solaria.zenus.systems"><img src="assets/badges/solaria-live.svg" alt="Solaria (live)"></a>
-  <a href="https://kauemelo01.github.io/Solar-System-Explorer/"><img src="assets/badges/solar-system-explorer-live.svg" alt="Solar System Explorer (live)"></a>
 </p>
 
 I'm a senior data analytics professional with more than ten years turning data into pricing, revenue and planning decisions, across technology, logistics, energy, digital identity and mobility. I build the whole chain: ingestion, ETL/ELT pipelines, data models, KPI frameworks, forecasting and ML-backed pricing, and the dashboards leadership uses to decide. I hold a B.Eng. in Electrical Engineering from Universidade Anhembi Morumbi and studied Corporate Finance & Investment Banking at FIA. On the side I write Python: dashboards, data tools, and lately science.
