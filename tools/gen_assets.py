@@ -537,6 +537,7 @@ NASA_LOGO = "data:image/svg+xml;base64,PHN2ZyBmaWxsPSJ3aGl0ZSIgcm9sZT0iaW1nIiB2a
 LIVE_BADGES = {  # slug: (label, label segment width, label text length) — geometry from shields.io
     "prime-radiant": ("PRIME RADIANT", 138.25, 97.25),
     "solaria": ("SOLARIA", 94.75, 53.75),
+    "solar-system-explorer": ("SOLAR SYSTEM EXPLORER", 196.25, 155.25),
 }
 
 
