@@ -320,7 +320,7 @@ def solar_system_explorer(t):
     px, py = 890, 64
     body += text(px, py - 22, "Any body as the centre", 15, t["muted"], 600)
     feats = [("516 objects", SSE_SUN, "real orbits"), ("467 moons", SSE_VENUS, "292 at Saturn"),
-             ("Any date", SSE_EARTH, "forward or back"), ("JPL / NASA", SSE_MARS, "cited per object")]
+             ("1800–2050 AD", SSE_EARTH, "best accuracy"), ("JPL / NASA", SSE_MARS, "cited per object")]
     for i, (name, color, note) in enumerate(feats):
         y = py + 10 + i * 58
         body += f'<rect x="{px}" y="{y}" width="270" height="46" rx="8" fill="{t["panel"]}" stroke="{t["border"]}"/>\n'

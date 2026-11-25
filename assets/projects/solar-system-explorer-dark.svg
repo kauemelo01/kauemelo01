@@ -251,8 +251,8 @@
 <text x="1146" y="160" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="end">292 at Saturn</text>
 <rect x="890" y="190" width="270" height="46" rx="8" fill="#161b22" stroke="#30363d"/>
 <circle cx="912" cy="213" r="7" fill="#4c8dff"/>
-<text x="930" y="218" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#f0f6fc" text-anchor="start">Any date</text>
-<text x="1146" y="218" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="end">forward or back</text>
+<text x="930" y="218" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#f0f6fc" text-anchor="start">1800–2050 AD</text>
+<text x="1146" y="218" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="end">best accuracy</text>
 <rect x="890" y="248" width="270" height="46" rx="8" fill="#161b22" stroke="#30363d"/>
 <circle cx="912" cy="271" r="7" fill="#f0643c"/>
 <text x="930" y="276" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#f0f6fc" text-anchor="start">JPL / NASA</text>
