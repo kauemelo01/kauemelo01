@@ -243,11 +243,11 @@
 <text x="890" y="42" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#59636e" text-anchor="start">Any body as the centre</text>
 <rect x="890" y="74" width="270" height="46" rx="8" fill="#f6f8fa" stroke="#d1d9e0"/>
 <circle cx="912" cy="97" r="7" fill="#fbba1f"/>
-<text x="930" y="102" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#1f2328" text-anchor="start">494 objects</text>
+<text x="930" y="102" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#1f2328" text-anchor="start">516 objects</text>
 <text x="1146" y="102" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#59636e" text-anchor="end">real orbits</text>
 <rect x="890" y="132" width="270" height="46" rx="8" fill="#f6f8fa" stroke="#d1d9e0"/>
 <circle cx="912" cy="155" r="7" fill="#e8c37a"/>
-<text x="930" y="160" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#1f2328" text-anchor="start">459 moons</text>
+<text x="930" y="160" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#1f2328" text-anchor="start">467 moons</text>
 <text x="1146" y="160" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#59636e" text-anchor="end">292 at Saturn</text>
 <rect x="890" y="190" width="270" height="46" rx="8" fill="#f6f8fa" stroke="#d1d9e0"/>
 <circle cx="912" cy="213" r="7" fill="#4c8dff"/>
@@ -257,7 +257,7 @@
 <circle cx="912" cy="271" r="7" fill="#f0643c"/>
 <text x="930" y="276" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#1f2328" text-anchor="start">JPL / NASA</text>
 <text x="1146" y="276" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#59636e" text-anchor="end">cited per object</text>
-<text x="890" y="326" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#59636e" text-anchor="start">3D orrery in one index.html (three.js)</text>
+<text x="890" y="326" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#59636e" text-anchor="start">3D orrery with spacecraft maps (three.js)</text>
 <text x="890" y="348" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#59636e" text-anchor="start">Orbit trails redrawn in the chosen frame</text>
-<text x="890" y="370" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#59636e" text-anchor="start">True scale or magnified bodies</text>
+<text x="890" y="370" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#59636e" text-anchor="start">Always true to scale</text>
 </svg>
