@@ -18,6 +18,7 @@ I'm a senior data analytics professional with more than ten years turning data i
 
 - **LatAm Senior Business Intelligence at Thermo Fisher Scientific.**
 - **AI Trainer at micro1.** Designing business scenarios (financial workbooks, cases, executive deliverables) to train and evaluate LLMs.
+- **[Solar System Explorer](https://kauemelo01.github.io/Solar-System-Explorer/).** An interactive 3D orrery of 516 real objects with NASA/JPL orbits, where any body in the solar system can be the centre.
 - **[Prime Radiant](https://primeradiant.zenus.systems).** The science core of a NASA FIRMS fire-activity app, built with [Guilherme Zeni](https://github.com/Guillhermm).
 - **[Solaria](https://solaria.zenus.systems).** A web app for exploring very large NASA images in the browser: guided Journeys, deep zoom, comparisons and multi-band views, with [Guilherme Zeni](https://github.com/Guillhermm).
 
